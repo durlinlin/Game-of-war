@@ -62,11 +62,11 @@ class GameOfWar {
     this.drawnPile.push(...playerTwoWar)
     if (this.drawnPile[this.drawnPile.length - 5].score > this.drawnPile[this.drawnPile.length - 1].score) {    
       console.log(`Round: ${this.round}\n Player One's hand: ${this.drawnPile[this.drawnPile.length - 5].rank} of ${this.drawnPile[this.drawnPile.length - 5].suit}player has ${this.playerOne.length} cards left\n Player Two's hand: ${this.drawnPile[this.drawnPile.length - 1].rank} of ${this.drawnPile[this.drawnPile.length - 1].suit} player has ${this.playerTwo.length} cards left\n Player ONE WINS WAR!`)
-      this.playerOne.push(...this.drawnPile)
+      this.playerOne.unshift(...this.drawnPile)
       this.drawnPile = [];
     } else if (this.drawnPile[this.drawnPile.length - 5].score < this.drawnPile[this.drawnPile.length - 1].score) {  
       console.log(`Round: ${this.round}\n Player One's hand: ${this.drawnPile[this.drawnPile.length - 5].rank} of ${this.drawnPile[this.drawnPile.length - 5].suit}player has ${this.playerOne.length} cards left\n Player Two's hand: ${this.drawnPile[this.drawnPile.length - 1].rank} of ${this.drawnPile[this.drawnPile.length - 1].suit} player has ${this.playerTwo.length} cards left\n Player TWO WINS WAR!`)
-      this.playerTwo.push(...this.drawnPile)
+      this.playerTwo.unshift(...this.drawnPile)
       this.drawnPile = [];
     } else {
       this.war();
@@ -84,13 +84,13 @@ class GameOfWar {
       else if (this.drawnPile[0].score > this.drawnPile[1].score) {
         this.round++
         console.log(`Round: ${this.round}\n Player One's hand: ${this.drawnPile[0].rank} of ${this.drawnPile[0].suit} player has ${this.playerOne.length} cards left\n Player Two's hand: ${this.drawnPile[1].rank} of ${this.drawnPile[1].suit} player has ${this.playerTwo.length} cards left\n Player One wins`)
-        this.playerOne.push(...this.drawnPile)
+        this.playerOne.unshift(...this.drawnPile)
         this.drawnPile = [];
       }
       else if (this.drawnPile[0].score < this.drawnPile[1].score) {
         this.round++
         console.log(`Round: ${this.round}\n Player One's hand: ${this.drawnPile[0].rank} of ${this.drawnPile[0].suit} player has ${this.playerOne.length} cards left\n Player Two's hand: ${this.drawnPile[1].rank} of ${this.drawnPile[1].suit} player has ${this.playerTwo.length} cards left\n Player Two wins`)
-      this.playerTwo.push(...this.drawnPile)
+      this.playerTwo.unshift(...this.drawnPile)
       this.drawnPile = [];
     }
   }
