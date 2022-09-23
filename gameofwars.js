@@ -23,11 +23,9 @@ class Deck {
   }
   shuffle() {
     let currentIndex = this.cards.length, randomIndex;
-
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-
       [this.cards[currentIndex], this.cards[randomIndex]] = [
         this.cards[randomIndex], this.cards[currentIndex]];
     }
@@ -53,24 +51,21 @@ class GameOfWar {
   war() {
     this.round++
     console.log(`Round: ${this.round }\n WAR!`)
-    console.log(`Player one's hand: ${this.drawnPile[0].rank} of ${this.drawnPile[0].suit}\n Player two's hand: ${this.drawnPile[1].rank} of ${this.drawnPile[1].suit}`)
+    console.log(`Player One's hand: ${this.drawnPile[0].rank} of ${this.drawnPile[0].suit}\n Player Two's hand: ${this.drawnPile[1].rank} of ${this.drawnPile[1].suit}`)
     let playerOneWar = (this.playerOne.splice(0,4))
-    console.log(`Player one war hand:`)
+    console.log(`Player One war hand:`)
     console.log(playerOneWar)
     let playerTwoWar = (this.playerTwo.splice(0,4))
-    console.log(`Player two war hand:`)
+    console.log(`Player Two war hand:`)
     console.log(playerTwoWar)
-    
     this.drawnPile.push(...playerOneWar)
     this.drawnPile.push(...playerTwoWar)
-    if (this.drawnPile[this.drawnPile.length - 5].score > this.drawnPile[this.drawnPile.length - 1].score) {
-      
-      console.log(`Round: ${this.round}\n Player one's hand: ${this.drawnPile[this.drawnPile.length - 5].rank} of ${this.drawnPile[this.drawnPile.length - 5].suit}\n Player two's hand: ${this.drawnPile[this.drawnPile.length - 1].rank} of ${this.drawnPile[this.drawnPile.length - 1].suit}\n Player ONE WINS WAR!`)
+    if (this.drawnPile[this.drawnPile.length - 5].score > this.drawnPile[this.drawnPile.length - 1].score) {    
+      console.log(`Round: ${this.round}\n Player One's hand: ${this.drawnPile[this.drawnPile.length - 5].rank} of ${this.drawnPile[this.drawnPile.length - 5].suit}player has ${this.playerOne.length} cards left\n Player Two's hand: ${this.drawnPile[this.drawnPile.length - 1].rank} of ${this.drawnPile[this.drawnPile.length - 1].suit} player has ${this.playerTwo.length} cards left\n Player ONE WINS WAR!`)
       this.playerOne.push(...this.drawnPile)
       this.drawnPile = [];
-    } else if (this.drawnPile[this.drawnPile.length - 5].score < this.drawnPile[this.drawnPile.length - 1].score) {
-     
-      console.log(`Round: ${this.round}\n Player one's hand: ${this.drawnPile[this.drawnPile.length - 5].rank} of ${this.drawnPile[this.drawnPile.length - 5].suit}\n Player two's hand: ${this.drawnPile[this.drawnPile.length - 1].rank} of ${this.drawnPile[this.drawnPile.length - 1].suit}\n Player TWO WINS WAR!`)
+    } else if (this.drawnPile[this.drawnPile.length - 5].score < this.drawnPile[this.drawnPile.length - 1].score) {  
+      console.log(`Round: ${this.round}\n Player One's hand: ${this.drawnPile[this.drawnPile.length - 5].rank} of ${this.drawnPile[this.drawnPile.length - 5].suit}player has ${this.playerOne.length} cards left\n Player Two's hand: ${this.drawnPile[this.drawnPile.length - 1].rank} of ${this.drawnPile[this.drawnPile.length - 1].suit} player has ${this.playerTwo.length} cards left\n Player TWO WINS WAR!`)
       this.playerTwo.push(...this.drawnPile)
       this.drawnPile = [];
     } else {
@@ -79,29 +74,25 @@ class GameOfWar {
   }
 
   gamePlay() {
-
+    console.log(`Game Start!\n Player One has ${this.playerOne.length} cards\n Player Two has ${this.playerTwo.length} cards`)
     while (this.playerOne.length !== 0 && this.playerTwo.length !== 0) {
       this.drawnPile.push(this.playerOne.pop())
       this.drawnPile.push(this.playerTwo.pop())
-
       if (this.drawnPile[0].score === this.drawnPile[1].score) {
         this.war();
       }
-
       else if (this.drawnPile[0].score > this.drawnPile[1].score) {
         this.round++
-        console.log(`Round: ${this.round}\n Player one's hand: ${this.drawnPile[0].rank} of ${this.drawnPile[0].suit}\n Player two's hand: ${this.drawnPile[1].rank} of ${this.drawnPile[1].suit}\n Player one wins`)
+        console.log(`Round: ${this.round}\n Player One's hand: ${this.drawnPile[0].rank} of ${this.drawnPile[0].suit} player has ${this.playerOne.length} cards left\n Player Two's hand: ${this.drawnPile[1].rank} of ${this.drawnPile[1].suit} player has ${this.playerTwo.length} cards left\n Player One wins`)
         this.playerOne.push(...this.drawnPile)
         this.drawnPile = [];
       }
-
       else if (this.drawnPile[0].score < this.drawnPile[1].score) {
         this.round++
-        console.log(`Round: ${this.round}\n Player one's hand: ${this.drawnPile[0].rank} of ${this.drawnPile[0].suit}\n Player two's hand: ${this.drawnPile[1].rank} of ${this.drawnPile[1].suit}\n Player Two wins`)
+        console.log(`Round: ${this.round}\n Player One's hand: ${this.drawnPile[0].rank} of ${this.drawnPile[0].suit} player has ${this.playerOne.length} cards left\n Player Two's hand: ${this.drawnPile[1].rank} of ${this.drawnPile[1].suit} player has ${this.playerTwo.length} cards left\n Player Two wins`)
       this.playerTwo.push(...this.drawnPile)
       this.drawnPile = [];
     }
-
   }
   if(this.playerOne.length === 52) {
   console.log(`Player One is the ULTIMATE winner with ${this.playerOne.length} cards on round ${this.round} `)
@@ -111,7 +102,6 @@ class GameOfWar {
 } 
       } 
 }
-
 let gameOne = new GameOfWar()
 gameOne.gameSetup()
 gameOne.gamePlay()
